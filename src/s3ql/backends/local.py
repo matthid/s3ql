@@ -99,8 +99,9 @@ class Backend(AbstractBackend, metaclass=ABCDocstMeta):
         # conflicts between parallel reads, the last one wins
         tmpname = '%s#%d-%d.tmp' % (path, os.getpid(), _thread.get_ident())
 
-        dest = ObjectW(tmpname)
-        os.rename(tmpname, path)
+        #dest = ObjectW(tmpname)
+        dest = ObjectW(path)
+        #os.rename(tmpname, path)
 
         dest.write(b's3ql_1\n')
         dest.write(struct.pack('<H', len(buf)))
